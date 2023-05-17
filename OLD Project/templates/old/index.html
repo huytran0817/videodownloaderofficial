@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Download videos for free using Video Downloader">
+    <meta name="author" content="Dee H">
+    <title>Facebook Video Downloader</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/examples/cover/">
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+
+    <meta name="theme-color" content="lightblue">
+
+
+    <style>
+        body {
+        background-color: lightblue;
+        }
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        /*Tab style*/
+        .tab{
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            }
+
+            /* Style the buttons inside the tab */
+            .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+            }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+            background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+            background-color: #ccc;
+            }
+
+            /* Style the tab content */
+            .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+            }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename = '/cover.css') }}" rel="stylesheet">
+</head>
+
+<body class="text-center">
+    <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner">
+                <h4 class="masthead-brand"> VIDOWNER</h4>
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link active" href="/">Home</a>
+                    <a class="nav-link" href="/about">About</a>
+                    <a class="nav-link" href="/terms-conditions">Terms & Conditions</a>
+                    <a class="nav-link" href="/history">History</a> <!-- Thêm vào dòng này -->
+
+                </nav>
+                
+            </div>
+        </header>
+
+        <main role="main" class="inner cover">
+            <h1 class="cover-heading">Download Video </h1>
+            <p class="lead">Tải video từ Website</p>
+            <p class="lead">
+                <div class="tab">
+                    <button class="tablinks" onclick="tabHandler(event, 'Video')">Video</button>
+                    <button class="tablinks" onclick="tabHandler(event, 'Audio')">Audio</button>
+                </div>
+                <form action="/claimlink/" method="get">
+                    <input type="text" class="form-control" placeholder="Place URL in this field..." name="url">
+                        <div id="Video" class="tabcontent">
+                            <h4>Video Quality:</h4>
+                            <div class="form-check-inline mx-5">  
+                                <label>360p </label>
+                                <input type="radio" class="form-control" name="type" value="video/360p">
+                                <label>480p </label>
+                                <input type="radio" class="form-control" name="type" value="video/480p">
+                                <label>720p </label>
+                                <input type="radio" class="form-control" name="type" value="video/720p">
+                                <label>1080p </label>
+                                <input type="radio" class="form-control" name="type" value="video/1080p">
+                            </div>
+                        </div>
+                          
+                        <div id="Audio" class="tabcontent">
+                            <h4>Audio Quality: </h4>
+                            <div class="form-check-inline mx-5">
+                                <label>128kbps </label>
+                                <input type="radio" class="form-control" name="type" value="audio/128kbps">
+                            </div>
+                        </div>
+                    <button type="submit" class="btn btn-success mt-3">Tải xuống</button>
+                </form>
+            <p class="text-justify">{{errors}}</p>
+            <div class="p-3">
+                <h2> Video Info: </h2>
+                <img src="{{thumbnail}}" width="1280" height="720"/>
+                <p class="text-justify">{{title}}</p>
+                <p class="text-justify">By: {{author}}</p>
+                <p class="text-justify">Rating: {{rating}}</p>
+                <p class="text-justify" >Views: {{view}} views</p>
+            </div>
+            
+        </main>
+
+        <footer class="mastfoot mt-auto">
+            <div class="inner">
+            </div>
+        </footer>
+    </div>
+</body>
+<script>
+    function tabHandler(evt, Name) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(Name).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    </script>
+</html>

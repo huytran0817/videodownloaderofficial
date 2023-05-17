@@ -23,10 +23,10 @@ def create_table(connection):
     connection.commit()
 
 
-def save_download_history(connection, url, title):
+def save_download_history(connection, url, title, type):
     cursor = connection.cursor()
-    query = "INSERT INTO download_history (video_url, video_title, timestamp) VALUES (%s, %s, NOW())"
-    cursor.execute(query, (url, title))
+    query = "INSERT INTO download_history (video_url, video_title, type, timestamp) VALUES (%s, %s, %s, NOW())"
+    cursor.execute(query, (url, title, type))
     connection.commit()
 
 
